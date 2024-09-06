@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,9 +75,10 @@ public class PostController {
 	public ResponseEntity<PostResponse> getAllPosts(
 			@RequestParam(value = "pageNumber",defaultValue = "0", required = false)Integer pageNumber,
 			@RequestParam(value = "pageSize",defaultValue = "5", required = false)Integer pageSize,
-			@RequestParam(value = "sortBy", defaultValue = "postId", required = false)String sortBy)
+			@RequestParam(value = "sortBy", defaultValue = "postId", required = false)String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = "asc", required = false) String sortDir)
 	{
-		PostResponse postResponse = this.postService.getAllPosts(pageNumber, pageSize, sortBy);
+		PostResponse postResponse = this.postService.getAllPosts(pageNumber, pageSize, sortBy,sortDir);
 		return new ResponseEntity<PostResponse>(postResponse,HttpStatus.OK);
 	}
 	

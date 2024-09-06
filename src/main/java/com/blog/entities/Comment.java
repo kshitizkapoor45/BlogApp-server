@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,5 +29,12 @@ public class Comment {
 	
 	@ManyToOne
 	private User user;
+	
+	@Transient
+	private String name;
+	
+	public String getName() {
+		return user.getName();
+	}
 
 }

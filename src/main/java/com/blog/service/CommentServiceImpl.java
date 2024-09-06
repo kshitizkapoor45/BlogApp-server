@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public CommentDto createComment(CommentDto commentDto, Integer postId, Integer userId) {
+	public CommentDto createComment(CommentDto commentDto, Integer postId, Integer userId, String name) {
 		
 		User user = this.userRepo.findById(userId)
 				.orElseThrow(() -> new ResourceNotFound("User", "User_id", userId));
@@ -44,7 +44,10 @@ public class CommentServiceImpl implements CommentService {
 		
 		Comment savedComment = this.commentRepo.save(comment);
 		
-		return this.modelMapper.map(savedComment, CommentDto.class);
+		CommentDto responseDto = this.modelMapper.map(savedComment, CommentDto.class);
+		responseDto.setName(user.getName());
+		
+		 return responseDto;
 	}
 
 	@Override

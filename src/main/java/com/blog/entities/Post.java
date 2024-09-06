@@ -33,7 +33,7 @@ public class Post {
 	@Column(name = "post_title", length = 100)
 	private String title;
 	
-	@Column(length = 1000)
+	@Column(length = 1000000)
 	private String content;
 	
 	private String imageName;
