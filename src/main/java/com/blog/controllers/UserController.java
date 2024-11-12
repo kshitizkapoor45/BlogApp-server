@@ -34,9 +34,8 @@ public class UserController {
 	{
 		UserDto createUserDto = this.userService.createUser(userDto);
 		return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
-		
-		
 	}
+	
 	@PutMapping("/{userId}")
 	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable() Integer userId)
 	{
@@ -57,14 +56,12 @@ public class UserController {
 	public ResponseEntity<List<UserDto>> getAllUsers()
 	{
 		return ResponseEntity.ok(this.userService.getAllUsers());
-		
 	}
 	
 	@GetMapping("/{userId}")
 	public ResponseEntity<UserDto> getUser(@PathVariable() Integer userId)
 	{
 		return ResponseEntity.ok(this.userService.getUserById(userId));
-		
 	}
 	
 	
